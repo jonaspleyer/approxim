@@ -56,6 +56,7 @@ impl_unsigned_abs_diff_eq!(u8, 0);
 impl_unsigned_abs_diff_eq!(u16, 0);
 impl_unsigned_abs_diff_eq!(u32, 0);
 impl_unsigned_abs_diff_eq!(u64, 0);
+impl_unsigned_abs_diff_eq!(u128, 0);
 impl_unsigned_abs_diff_eq!(usize, 0);
 
 macro_rules! impl_signed_abs_diff_eq {
