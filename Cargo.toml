@@ -4,6 +4,7 @@ version = "0.5.1"
 authors = ["Brendan Zabarauskas <bjzaba@yahoo.com.au>"]
 license = "Apache-2.0"
 description = "Approximate floating point equality comparisons and assertions."
+edition = "2021"
 
 documentation = "https://docs.rs/approx"
 homepage = "https://github.com/brendanzab/approx"
