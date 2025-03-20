@@ -1,21 +1,10 @@
 # approxim
 
-[![Build Status][travis_badge]][travis_url]
-[![Version][version_badge]][crate_url]
-[![Documentation][docs_badge]][docs_url]
-[![Downloads][downloads_badge]][crate_url]
-[![License][license_badge]][license_url]
-
-[travis_badge]: https://travis-ci.org/jonaspleyer/approxim.svg?branch=master
-[docs_badge]: https://docs.rs/approxim/badge.svg
-[version_badge]: https://img.shields.io/crates/v/approxim.svg
-[license_badge]: https://img.shields.io/crates/l/approxim.svg
-[downloads_badge]: https://img.shields.io/crates/d/approxim.svg
-
-[travis_url]: https://travis-ci.org/jonaspleyer/approxim
-[docs_url]: https://docs.rs/approxim
-[crate_url]: https://crates.io/crates/approxim
-[license_url]: https://github.com/jonaspleyer/approxim/blob/master/LICENSE
+![Test](https://img.shields.io/github/actions/workflow/status/jonaspleyer/approxim/test.yml?style=flat-square&label=Test)
+[![Crate](https://img.shields.io/crates/v/approxim.svg?style=flat-square)](https://crates.io/crates/approxim)
+[![License Apache](https://img.shields.io/badge/License-Apache%202.0-brightgreen.svg?style=flat-square)](https://opensource.org/licenses/Apache-2.0)
+[![Docs](https://img.shields.io/docsrs/approxim?style=flat-square)](https://docs.rs/approxim)
+[![Minimum rustc version](https://img.shields.io/badge/rustc-1.36+-lightgray.svg?style=flat-square)](https://github.com/jonaspleyer/approxim#rust-version-requirements)
 
 This is a fork of the popular [approx](https://github.com/brendanzab/approx) crate.
 Approximate floating point equality comparisons and assertions for the Rust Programming Language.
