@@ -3,7 +3,7 @@ use core::cell;
 use num_complex::Complex;
 use num_traits::Signed;
 
-use AbsDiffEq;
+use crate::AbsDiffEq;
 
 /// Equality comparisons between two numbers using both the absolute difference and ULPs
 /// (Units in Last Place) based comparisons.
