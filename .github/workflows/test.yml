@@ -20,7 +20,7 @@ jobs:
           toolchain: ${{ matrix.toolchain }}
 
       - name: Run cargo check
-        run: cargo check
+        run: cargo check --all-features
 
   test:
     strategy:
@@ -39,7 +39,7 @@ jobs:
           toolchain: ${{ matrix.toolchain }}
 
       - name: Run cargo test
-        run: cargo test
+        run: cargo test --all-features
 
   doctest:
     strategy:
@@ -58,7 +58,7 @@ jobs:
           toolchain: ${{ matrix.toolchain }}
 
       - name: Run cargo test
-        run: cargo test --doc
+        run: cargo test --doc --all-features
 
   miri:
     name: Miri
@@ -77,5 +77,5 @@ jobs:
           cargo miri setup
 
       - name: Test with Miri
-        run: cargo miri test
+        run: cargo miri test --all-features
 
