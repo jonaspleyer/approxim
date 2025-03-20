@@ -17,4 +17,5 @@
 [crate_url]: https://crates.io/crates/approxim
 [license_url]: https://github.com/jonaspleyer/approxim/blob/master/LICENSE
 
+This is a fork of the popular [approx](https://github.com/brendanzab/approx) crate.
 Approximate floating point equality comparisons and assertions for the Rust Programming Language.
