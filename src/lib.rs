@@ -221,14 +221,14 @@ where
         AbsDiff { epsilon }
     }
 
-    /// Peform the equality comparison
+    /// Perform the equality comparison
     #[inline]
     #[must_use]
     pub fn eq(self, lhs: &A, rhs: &B) -> bool {
         A::abs_diff_eq(lhs, rhs, self.epsilon)
     }
 
-    /// Peform the inequality comparison
+    /// Perform the inequality comparison
     #[inline]
     #[must_use]
     pub fn ne(self, lhs: &A, rhs: &B) -> bool {
@@ -299,14 +299,14 @@ where
         }
     }
 
-    /// Peform the equality comparison
+    /// Perform the equality comparison
     #[inline]
     #[must_use]
     pub fn eq(self, lhs: &A, rhs: &B) -> bool {
         A::relative_eq(lhs, rhs, self.epsilon, self.max_relative)
     }
 
-    /// Peform the inequality comparison
+    /// Perform the inequality comparison
     #[inline]
     #[must_use]
     pub fn ne(self, lhs: &A, rhs: &B) -> bool {
@@ -374,14 +374,14 @@ where
         Ulps { max_ulps, ..self }
     }
 
-    /// Peform the equality comparison
+    /// Perform the equality comparison
     #[inline]
     #[must_use]
     pub fn eq(self, lhs: &A, rhs: &B) -> bool {
         A::ulps_eq(lhs, rhs, self.epsilon, self.max_ulps)
     }
 
-    /// Peform the inequality comparison
+    /// Perform the inequality comparison
     #[inline]
     #[must_use]
     pub fn ne(self, lhs: &A, rhs: &B) -> bool {
