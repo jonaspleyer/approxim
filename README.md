@@ -19,3 +19,4 @@ renaming option provided by cargo.
 [dependencies]
 approx = { package = "approxim", version = "CURRENT_VERSION" }
 ```
+Note that no further changes are required. Derive macros should also work this this workaround.
