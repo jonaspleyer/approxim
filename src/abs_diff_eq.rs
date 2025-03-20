@@ -32,8 +32,9 @@ where
 
     /// The default tolerance to use when testing values that are close together.
     ///
-    /// This is used when no `epsilon` value is supplied to the [`abs_diff_eq!`], [`relative_eq!`],
-    /// or [`ulps_eq!`] macros.
+    /// This is used when no `epsilon` value is supplied to the
+    /// [`abs_diff_eq!`](crate::abs_diff_eq), [`relative_eq!`](crate::relative_eq),
+    /// or [`ulps_eq!`](crate::ulps_eq) macros.
     fn default_epsilon() -> Self::Epsilon;
 
     /// A test for equality that uses the absolute difference to compute the approximimate
