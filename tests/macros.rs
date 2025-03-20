@@ -15,7 +15,7 @@
 //! Macro instantiation tests
 
 #[macro_use]
-extern crate approx;
+extern crate approxim;
 
 #[test]
 fn test_abs_diff_eq() {

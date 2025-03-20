@@ -1,17 +1,17 @@
 [package]
-name = "approx"
+name = "approxim"
 version = "0.5.1"
 authors = ["Brendan Zabarauskas <bjzaba@yahoo.com.au>"]
 license = "Apache-2.0"
 description = "Approximate floating point equality comparisons and assertions."
 
-documentation = "https://docs.rs/approx"
-homepage = "https://github.com/brendanzab/approx"
-repository = "https://github.com/brendanzab/approx"
+documentation = "https://docs.rs/approxim"
+homepage = "https://github.com/jonaspleyer/approxim"
+repository = "https://github.com/jonaspleyer/approxim"
 readme = "README.md"
 
 keywords = [
-    "approximate",
+    "approximimate",
     "assert",
     "comparison",
     "equality",
@@ -22,7 +22,7 @@ keywords = [
 features = ["std", "num-complex"]
 
 [lib]
-name = "approx"
+name = "approxim"
 
 [features]
 default = ["std"]

@@ -17,7 +17,7 @@
 #![no_std]
 
 #[macro_use]
-extern crate approx;
+extern crate approxim;
 
 mod test_f32 {
     use core::f32;

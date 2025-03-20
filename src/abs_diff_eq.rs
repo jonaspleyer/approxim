@@ -16,7 +16,7 @@ where
     /// or [`ulps_eq!`] macros.
     fn default_epsilon() -> Self::Epsilon;
 
-    /// A test for equality that uses the absolute difference to compute the approximate
+    /// A test for equality that uses the absolute difference to compute the approximimate
     /// equality of two numbers.
     fn abs_diff_eq(&self, other: &Rhs, epsilon: Self::Epsilon) -> bool;
 
