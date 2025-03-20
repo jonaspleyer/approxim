@@ -15,7 +15,6 @@ renaming option provided by cargo.
 
 ```toml
 # Cargo.toml
-...
 [dependencies]
 approx = { package = "approxim", version = "CURRENT_VERSION" }
 ```
