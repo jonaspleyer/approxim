@@ -297,7 +297,7 @@ impl<T: RelativeEq + Copy> RelativeEq for NotNan<T> {
 }
 
 #[cfg(feature = "ordered-float")]
-impl<T: RelativeEq + Float> RelativeEq<T> for NotNan<T> {
+impl<T: RelativeEq + Float + ordered_float::FloatCore> RelativeEq<T> for NotNan<T> {
     #[inline]
     fn default_max_relative() -> Self::Epsilon {
         T::default_max_relative()
@@ -310,7 +310,7 @@ impl<T: RelativeEq + Float> RelativeEq<T> for NotNan<T> {
 }
 
 #[cfg(feature = "ordered-float")]
-impl<T: RelativeEq + Float> RelativeEq for OrderedFloat<T> {
+impl<T: RelativeEq + Float + ordered_float::FloatCore> RelativeEq for OrderedFloat<T> {
     #[inline]
     fn default_max_relative() -> Self::Epsilon {
         T::default_max_relative()
@@ -333,7 +333,7 @@ impl<T: RelativeEq + Float> RelativeEq for OrderedFloat<T> {
 }
 
 #[cfg(feature = "ordered-float")]
-impl<T: RelativeEq + Float> RelativeEq<T> for OrderedFloat<T> {
+impl<T: RelativeEq + Float + ordered_float::FloatCore> RelativeEq<T> for OrderedFloat<T> {
     #[inline]
     fn default_max_relative() -> Self::Epsilon {
         T::default_max_relative()

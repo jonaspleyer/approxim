@@ -277,7 +277,7 @@ impl<T: AbsDiffEq + Copy> AbsDiffEq for NotNan<T> {
 }
 
 #[cfg(feature = "ordered-float")]
-impl<T: AbsDiffEq + Float> AbsDiffEq<T> for NotNan<T> {
+impl<T: AbsDiffEq + Float + ordered_float::FloatCore> AbsDiffEq<T> for NotNan<T> {
     type Epsilon = T::Epsilon;
 
     #[inline]
@@ -292,7 +292,7 @@ impl<T: AbsDiffEq + Float> AbsDiffEq<T> for NotNan<T> {
 }
 
 #[cfg(feature = "ordered-float")]
-impl<T: AbsDiffEq + Float> AbsDiffEq for OrderedFloat<T> {
+impl<T: AbsDiffEq + Float + ordered_float::FloatCore> AbsDiffEq for OrderedFloat<T> {
     type Epsilon = T::Epsilon;
 
     #[inline]
@@ -307,7 +307,7 @@ impl<T: AbsDiffEq + Float> AbsDiffEq for OrderedFloat<T> {
 }
 
 #[cfg(feature = "ordered-float")]
-impl<T: AbsDiffEq + Float> AbsDiffEq<T> for OrderedFloat<T> {
+impl<T: AbsDiffEq + Float + ordered_float::FloatCore> AbsDiffEq<T> for OrderedFloat<T> {
     type Epsilon = T::Epsilon;
 
     #[inline]

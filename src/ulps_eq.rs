@@ -231,7 +231,7 @@ impl<T: UlpsEq + Copy> UlpsEq for NotNan<T> {
 }
 
 #[cfg(feature = "ordered-float")]
-impl<T: UlpsEq + Float> UlpsEq<T> for NotNan<T> {
+impl<T: UlpsEq + Float + ordered_float::FloatCore> UlpsEq<T> for NotNan<T> {
     #[inline]
     fn default_max_ulps() -> u32 {
         T::default_max_ulps()
@@ -244,7 +244,7 @@ impl<T: UlpsEq + Float> UlpsEq<T> for NotNan<T> {
 }
 
 #[cfg(feature = "ordered-float")]
-impl<T: UlpsEq + Float> UlpsEq for OrderedFloat<T> {
+impl<T: UlpsEq + Float + ordered_float::FloatCore> UlpsEq for OrderedFloat<T> {
     #[inline]
     fn default_max_ulps() -> u32 {
         T::default_max_ulps()
@@ -257,7 +257,7 @@ impl<T: UlpsEq + Float> UlpsEq for OrderedFloat<T> {
 }
 
 #[cfg(feature = "ordered-float")]
-impl<T: UlpsEq + Float> UlpsEq<T> for OrderedFloat<T> {
+impl<T: UlpsEq + Float + ordered_float::FloatCore> UlpsEq<T> for OrderedFloat<T> {
     #[inline]
     fn default_max_ulps() -> u32 {
         T::default_max_ulps()
