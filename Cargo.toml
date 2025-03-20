@@ -4,7 +4,7 @@ version = "0.6.2"
 authors = ["Brendan Zabarauskas <bjzaba@yahoo.com.au>"]
 license = "Apache-2.0"
 description = "Approximate floating point equality comparisons and assertions."
-edition = "2021"
+edition = "2024"
 
 documentation = "https://docs.rs/approxim"
 homepage = "https://github.com/jonaspleyer/approxim"
