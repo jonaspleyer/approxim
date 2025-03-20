@@ -512,7 +512,7 @@ mod test_complex {
 #[cfg(feature = "ordered-float")]
 mod test_ordered_float {
     extern crate ordered_float;
-    pub use self::ordered_float::{NotNan, OrderedFloat};
+    pub use self::ordered_float::OrderedFloat;
 
     mod test_f32 {
         use super::OrderedFloat;
