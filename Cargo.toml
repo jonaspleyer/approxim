@@ -34,3 +34,4 @@ array_impl = []
 num-traits = { version = "0.2.19", default-features = false }
 num-complex = { version = "0.4.6", optional = true }
 ordered-float = { version = "5.0", optional = true }
+approx-derive = { version = "0.2.3", features = ["approxim"] }
