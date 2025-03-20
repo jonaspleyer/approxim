@@ -1,0 +1,7 @@
+[package]
+name = "exponential_decay"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+approx_some_other = { package = "approxim", path = "../../" }
