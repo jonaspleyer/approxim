@@ -8,3 +8,14 @@
 
 This is a fork of the popular [approx](https://github.com/brendanzab/approx) crate.
 Approximate floating point equality comparisons and assertions for the Rust Programming Language.
+
+## Replace `approx`
+To act as a drop-in replacement for [approx](https://github.com/brendanzab/approx), one can use the
+renaming option provided by cargo.
+
+```toml
+# Cargo.toml
+...
+[dependencies]
+approx = { package = "approxim", version = "CURRENT_VERSION" }
+```
