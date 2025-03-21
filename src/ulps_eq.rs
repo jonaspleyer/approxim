@@ -200,6 +200,65 @@ where
     }
 }
 
+#[cfg(feature = "tuple_impl")]
+macro_rules! impl_ulps_eq {
+    () => {
+        impl UlpsEq for () {
+            fn default_max_ulps() -> u32 {
+                0
+            }
+
+            fn ulps_eq(
+                &self,
+                _other: &Self,
+                _epsilon: Self::Epsilon,
+                _max_ulps: u32,
+            ) -> bool {
+                true
+            }
+        }
+    };
+
+    ($($T:ident),+ ; $($idx:tt),+) => {
+        impl<$($T),+> UlpsEq for ($($T,)+)
+        where
+            $($T: UlpsEq,)+
+        {
+            fn default_max_ulps() -> u32 {
+                0 $(.max($T::default_max_ulps()))+
+            }
+
+            fn ulps_eq(
+                &self,
+                other: &Self,
+                epsilon: Self::Epsilon,
+                max_ulps: u32
+            ) -> bool {
+                true $(&& self.$idx.ulps_eq(&other.$idx, epsilon.$idx, max_ulps))+
+            }
+        }
+    };
+}
+
+#[cfg(feature = "tuple_impl")]
+mod ulps_eq_tuple_impls {
+    use super::*;
+
+    impl_ulps_eq!();
+    impl_ulps_eq!(T0; 0);
+    impl_ulps_eq!(T0, T1; 0, 1);
+    impl_ulps_eq!(T0, T1, T2; 0, 1, 2);
+    impl_ulps_eq!(T0, T1, T2, T3; 0, 1, 2, 3);
+    impl_ulps_eq!(T0, T1, T2, T3, T4; 0, 1, 2, 3, 4);
+    impl_ulps_eq!(T0, T1, T2, T3, T4, T5; 0, 1, 2, 3, 4, 5);
+    impl_ulps_eq!(T0, T1, T2, T3, T4, T5, T6; 0, 1, 2, 3, 4, 5, 6);
+    impl_ulps_eq!(T0, T1, T2, T3, T4, T5, T6, T7; 0, 1, 2, 3, 4, 5, 6, 7);
+    impl_ulps_eq!(T0, T1, T2, T3, T4, T5, T6, T7, T8; 0, 1, 2, 3, 4, 5, 6, 7, 8);
+    impl_ulps_eq!(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+    impl_ulps_eq!(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    impl_ulps_eq!(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
+}
+
 #[cfg(feature = "num-complex")]
 impl<T: UlpsEq> UlpsEq for Complex<T>
 where
