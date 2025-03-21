@@ -252,6 +252,67 @@ where
     }
 }
 
+#[cfg(feature = "tuple_impl")]
+macro_rules! impl_relative_eq {
+    () => {
+        impl RelativeEq for () {
+            fn default_max_relative() -> Self::Epsilon {
+                ()
+            }
+
+            fn relative_eq(
+                &self,
+                _other: &Self,
+                _epsilon: Self::Epsilon,
+                _max_relative: Self::Epsilon,
+            ) -> bool {
+                true
+            }
+        }
+    };
+
+    ($($T:ident),+ ; $($idx:tt),+) => {
+        impl<$($T),+> RelativeEq for ($($T,)+)
+        where
+            $($T: RelativeEq,)+
+        {
+            fn default_max_relative() -> Self::Epsilon {
+                ($($T::default_max_relative(),)+)
+            }
+
+            fn relative_eq(
+                &self,
+                other: &Self,
+                epsilon: Self::Epsilon,
+                max_relative: Self::Epsilon,
+            ) -> bool {
+                true $(
+                    && self.$idx.relative_eq(&other.$idx, epsilon.$idx, max_relative.$idx)
+                )+
+            }
+        }
+    };
+}
+
+#[cfg(feature = "tuple_impl")]
+mod relative_eq_tuple_impls {
+    use super::*;
+
+    impl_relative_eq!();
+    impl_relative_eq!(T0; 0);
+    impl_relative_eq!(T0, T1; 0, 1);
+    impl_relative_eq!(T0, T1, T2; 0, 1, 2);
+    impl_relative_eq!(T0, T1, T2, T3; 0, 1, 2, 3);
+    impl_relative_eq!(T0, T1, T2, T3, T4; 0, 1, 2, 3, 4);
+    impl_relative_eq!(T0, T1, T2, T3, T4, T5; 0, 1, 2, 3, 4, 5);
+    impl_relative_eq!(T0, T1, T2, T3, T4, T5, T6; 0, 1, 2, 3, 4, 5, 6);
+    impl_relative_eq!(T0, T1, T2, T3, T4, T5, T6, T7; 0, 1, 2, 3, 4, 5, 6, 7);
+    impl_relative_eq!(T0, T1, T2, T3, T4, T5, T6, T7, T8; 0, 1, 2, 3, 4, 5, 6, 7, 8);
+    impl_relative_eq!(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+    impl_relative_eq!(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    impl_relative_eq!(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
+}
+
 #[cfg(feature = "num-complex")]
 impl<T: RelativeEq> RelativeEq for Complex<T>
 where
