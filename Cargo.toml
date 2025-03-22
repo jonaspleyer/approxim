@@ -20,7 +20,7 @@ keywords = [
 ]
 
 [package.metadata.docs.rs]
-features = ["std", "num-complex", "array_impl", "ordered-float"]
+features = ["std", "num-complex", "array_impl", "tuple_impl", "ordered-float"]
 
 [lib]
 name = "approxim"
@@ -29,6 +29,10 @@ name = "approxim"
 default = ["std"]
 std = []
 array_impl = []
+tuple_impl = []
+
+[build.dependencies]
+paste = { version = "1.0.15", optional = true }
 
 [dependencies]
 num-traits = { version = "0.2.19", default-features = false }
