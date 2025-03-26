@@ -39,7 +39,7 @@ where
 
     /// A test for equality that uses a relative comparison if the values are far apart.
     fn relative_eq(&self, other: &Rhs, epsilon: Self::Epsilon, max_relative: Self::Epsilon)
-        -> bool;
+    -> bool;
 
     /// The inverse of [`RelativeEq::relative_eq`].
     fn relative_ne(
