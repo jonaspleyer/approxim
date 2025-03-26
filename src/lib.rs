@@ -162,11 +162,14 @@
 
 #![no_std]
 #![allow(clippy::transmute_float_to_int)]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 
 #[cfg(feature = "num-complex")]
+#[cfg_attr(docsrs, doc(cfg(feature = "num-complex")))]
 extern crate num_complex;
 extern crate num_traits;
 #[cfg(feature = "ordered-float")]
+#[cfg_attr(docsrs, doc(cfg(feature = "ordered-float")))]
 extern crate ordered_float;
 
 mod abs_diff_eq;

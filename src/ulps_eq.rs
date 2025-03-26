@@ -182,6 +182,7 @@ where
 }
 
 #[cfg(feature = "array_impl")]
+#[cfg_attr(docsrs, doc(cfg(feature = "array_impl")))]
 impl<A, B, const N: usize> UlpsEq<[B; N]> for [A; N]
 where
     A: UlpsEq<B>,
@@ -201,6 +202,7 @@ where
 }
 
 #[cfg(feature = "tuple_impl")]
+#[cfg_attr(docsrs, doc(cfg(feature = "tuple_impl")))]
 macro_rules! impl_ulps_eq {
     () => {
         impl UlpsEq for () {
@@ -243,6 +245,7 @@ macro_rules! impl_ulps_eq {
 }
 
 #[cfg(feature = "tuple_impl")]
+#[cfg_attr(docsrs, doc(cfg(feature = "tuple_impl")))]
 mod ulps_eq_tuple_impls {
     use super::*;
 
@@ -262,6 +265,7 @@ mod ulps_eq_tuple_impls {
 }
 
 #[cfg(feature = "num-complex")]
+#[cfg_attr(docsrs, doc(cfg(feature = "num-complex")))]
 impl<T: UlpsEq> UlpsEq for Complex<T>
 where
     T::Epsilon: Clone,
@@ -279,6 +283,7 @@ where
 }
 
 #[cfg(feature = "ordered-float")]
+#[cfg_attr(docsrs, doc(cfg(feature = "ordered-float")))]
 impl<T: UlpsEq + Copy> UlpsEq for NotNan<T> {
     #[inline]
     fn default_max_ulps() -> u32 {
@@ -292,6 +297,7 @@ impl<T: UlpsEq + Copy> UlpsEq for NotNan<T> {
 }
 
 #[cfg(feature = "ordered-float")]
+#[cfg_attr(docsrs, doc(cfg(feature = "ordered-float")))]
 impl<T: UlpsEq + Float + ordered_float::FloatCore> UlpsEq<T> for NotNan<T> {
     #[inline]
     fn default_max_ulps() -> u32 {
@@ -305,6 +311,7 @@ impl<T: UlpsEq + Float + ordered_float::FloatCore> UlpsEq<T> for NotNan<T> {
 }
 
 #[cfg(feature = "ordered-float")]
+#[cfg_attr(docsrs, doc(cfg(feature = "ordered-float")))]
 impl<T: UlpsEq + Float + ordered_float::FloatCore> UlpsEq for OrderedFloat<T> {
     #[inline]
     fn default_max_ulps() -> u32 {
@@ -318,6 +325,7 @@ impl<T: UlpsEq + Float + ordered_float::FloatCore> UlpsEq for OrderedFloat<T> {
 }
 
 #[cfg(feature = "ordered-float")]
+#[cfg_attr(docsrs, doc(cfg(feature = "ordered-float")))]
 impl<T: UlpsEq + Float + ordered_float::FloatCore> UlpsEq<T> for OrderedFloat<T> {
     #[inline]
     fn default_max_ulps() -> u32 {

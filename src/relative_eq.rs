@@ -234,6 +234,7 @@ where
 }
 
 #[cfg(feature = "array_impl")]
+#[cfg_attr(docsrs, doc(cfg(feature = "array_impl")))]
 impl<A, B, const N: usize> RelativeEq<[B; N]> for [A; N]
 where
     A: RelativeEq<B>,
@@ -253,6 +254,7 @@ where
 }
 
 #[cfg(feature = "tuple_impl")]
+#[cfg_attr(docsrs, doc(cfg(feature = "tuple_impl")))]
 macro_rules! impl_relative_eq {
     () => {
         impl RelativeEq for () {
@@ -295,6 +297,7 @@ macro_rules! impl_relative_eq {
 }
 
 #[cfg(feature = "tuple_impl")]
+#[cfg_attr(docsrs, doc(cfg(feature = "tuple_impl")))]
 mod relative_eq_tuple_impls {
     use super::*;
 
@@ -314,6 +317,7 @@ mod relative_eq_tuple_impls {
 }
 
 #[cfg(feature = "num-complex")]
+#[cfg_attr(docsrs, doc(cfg(feature = "num-complex")))]
 impl<T: RelativeEq> RelativeEq for Complex<T>
 where
     T::Epsilon: Clone,
@@ -336,6 +340,7 @@ where
 }
 
 #[cfg(feature = "ordered-float")]
+#[cfg_attr(docsrs, doc(cfg(feature = "ordered-float")))]
 impl<T: RelativeEq + Copy> RelativeEq for NotNan<T> {
     #[inline]
     fn default_max_relative() -> Self::Epsilon {
@@ -359,6 +364,7 @@ impl<T: RelativeEq + Copy> RelativeEq for NotNan<T> {
 }
 
 #[cfg(feature = "ordered-float")]
+#[cfg_attr(docsrs, doc(cfg(feature = "ordered-float")))]
 impl<T: RelativeEq + Float + ordered_float::FloatCore> RelativeEq<T> for NotNan<T> {
     #[inline]
     fn default_max_relative() -> Self::Epsilon {
@@ -372,6 +378,7 @@ impl<T: RelativeEq + Float + ordered_float::FloatCore> RelativeEq<T> for NotNan<
 }
 
 #[cfg(feature = "ordered-float")]
+#[cfg_attr(docsrs, doc(cfg(feature = "ordered-float")))]
 impl<T: RelativeEq + Float + ordered_float::FloatCore> RelativeEq for OrderedFloat<T> {
     #[inline]
     fn default_max_relative() -> Self::Epsilon {
@@ -395,6 +402,7 @@ impl<T: RelativeEq + Float + ordered_float::FloatCore> RelativeEq for OrderedFlo
 }
 
 #[cfg(feature = "ordered-float")]
+#[cfg_attr(docsrs, doc(cfg(feature = "ordered-float")))]
 impl<T: RelativeEq + Float + ordered_float::FloatCore> RelativeEq<T> for OrderedFloat<T> {
     #[inline]
     fn default_max_relative() -> Self::Epsilon {

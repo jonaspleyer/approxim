@@ -224,6 +224,7 @@ where
 }
 
 #[cfg(feature = "array_impl")]
+#[cfg_attr(docsrs, doc(cfg(feature = "array_impl")))]
 impl<A, B, const N: usize> AbsDiffEq<[B; N]> for [A; N]
 where
     A: AbsDiffEq<B>,
@@ -244,6 +245,7 @@ where
 }
 
 #[cfg(feature = "tuple_impl")]
+#[cfg_attr(docsrs, doc(cfg(feature = "tuple_impl")))]
 macro_rules! impl_abs_diff_eq {
     () => {
         impl AbsDiffEq for () {
@@ -280,6 +282,7 @@ macro_rules! impl_abs_diff_eq {
 }
 
 #[cfg(feature = "tuple_impl")]
+#[cfg_attr(docsrs, doc(cfg(feature = "tuple_impl")))]
 mod abs_diff_eq_tuple_impls {
     use super::*;
 
@@ -299,6 +302,7 @@ mod abs_diff_eq_tuple_impls {
 }
 
 #[cfg(feature = "num-complex")]
+#[cfg_attr(docsrs, doc(cfg(feature = "num-complex")))]
 impl<T: AbsDiffEq> AbsDiffEq for Complex<T>
 where
     T::Epsilon: Clone,
@@ -318,6 +322,7 @@ where
 }
 
 #[cfg(feature = "ordered-float")]
+#[cfg_attr(docsrs, doc(cfg(feature = "ordered-float")))]
 impl<T: AbsDiffEq + Copy> AbsDiffEq for NotNan<T> {
     type Epsilon = T::Epsilon;
 
@@ -333,6 +338,7 @@ impl<T: AbsDiffEq + Copy> AbsDiffEq for NotNan<T> {
 }
 
 #[cfg(feature = "ordered-float")]
+#[cfg_attr(docsrs, doc(cfg(feature = "ordered-float")))]
 impl<T: AbsDiffEq + Float + ordered_float::FloatCore> AbsDiffEq<T> for NotNan<T> {
     type Epsilon = T::Epsilon;
 
@@ -348,6 +354,7 @@ impl<T: AbsDiffEq + Float + ordered_float::FloatCore> AbsDiffEq<T> for NotNan<T>
 }
 
 #[cfg(feature = "ordered-float")]
+#[cfg_attr(docsrs, doc(cfg(feature = "ordered-float")))]
 impl<T: AbsDiffEq + Float + ordered_float::FloatCore> AbsDiffEq for OrderedFloat<T> {
     type Epsilon = T::Epsilon;
 
@@ -363,6 +370,7 @@ impl<T: AbsDiffEq + Float + ordered_float::FloatCore> AbsDiffEq for OrderedFloat
 }
 
 #[cfg(feature = "ordered-float")]
+#[cfg_attr(docsrs, doc(cfg(feature = "ordered-float")))]
 impl<T: AbsDiffEq + Float + ordered_float::FloatCore> AbsDiffEq<T> for OrderedFloat<T> {
     type Epsilon = T::Epsilon;
 
