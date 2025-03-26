@@ -398,4 +398,19 @@ where
     }
 }
 
-pub use approx_derive::*;
+#[doc(inline)]
+#[cfg(feature = "derive")]
+#[cfg_attr(docsrs, doc(cfg(feature = "derive")))]
+pub use approx_derive;
+
+/// See [approx_derive]
+///
+#[cfg(feature = "derive")]
+#[cfg_attr(docsrs, doc(cfg(feature = "derive")))]
+pub use approx_derive::AbsDiffEq;
+
+/// See [approx_derive]
+///
+#[cfg(feature = "derive")]
+#[cfg_attr(docsrs, doc(cfg(feature = "derive")))]
+pub use approx_derive::RelativeEq;
