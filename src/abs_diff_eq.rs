@@ -251,9 +251,7 @@ macro_rules! impl_abs_diff_eq {
         impl AbsDiffEq for () {
             type Epsilon = ();
 
-            fn default_epsilon() -> Self::Epsilon {
-                ()
-            }
+            fn default_epsilon() -> Self::Epsilon {}
 
             fn abs_diff_eq(&self, _other: &Self, _epsilon: Self::Epsilon) -> bool {
                 true
