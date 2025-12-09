@@ -1,4 +1,6 @@
 use crate::AbsDiffEq;
+#[cfg(feature = "vec_impl")]
+use alloc::vec::Vec;
 use core::{cell, f32, f64};
 #[cfg(feature = "num-complex")]
 use num_complex::Complex;
@@ -247,6 +249,26 @@ where
 
     #[inline]
     fn relative_eq(&self, other: &[B; N], epsilon: A::Epsilon, max_relative: A::Epsilon) -> bool {
+        self.len() == other.len()
+            && Iterator::zip(self.iter(), other)
+                .all(|(x, y)| A::relative_eq(x, y, epsilon.clone(), max_relative.clone()))
+    }
+}
+
+#[cfg(feature = "vec_impl")]
+#[cfg_attr(docsrs, doc(cfg(feature = "vec_impl")))]
+impl<A, B> RelativeEq<Vec<B>> for Vec<A>
+where
+    A: RelativeEq<B>,
+    A::Epsilon: Clone,
+{
+    #[inline]
+    fn default_max_relative() -> A::Epsilon {
+        A::default_max_relative()
+    }
+
+    #[inline]
+    fn relative_eq(&self, other: &Vec<B>, epsilon: A::Epsilon, max_relative: A::Epsilon) -> bool {
         self.len() == other.len()
             && Iterator::zip(self.iter(), other)
                 .all(|(x, y)| A::relative_eq(x, y, epsilon.clone(), max_relative.clone()))

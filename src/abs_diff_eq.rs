@@ -1,3 +1,5 @@
+#[cfg(feature = "vec_impl")]
+use alloc::vec::Vec;
 use core::cell;
 #[cfg(feature = "num-complex")]
 use num_complex::Complex;
@@ -297,6 +299,27 @@ mod abs_diff_eq_tuple_impls {
     impl_abs_diff_eq!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
     impl_abs_diff_eq!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
     impl_abs_diff_eq!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
+}
+
+#[cfg(feature = "vec_impl")]
+#[cfg_attr(docsrs, doc(cfg(feature = "vec_impl")))]
+impl<A, B> AbsDiffEq<Vec<B>> for Vec<A>
+where
+    A: AbsDiffEq<B>,
+    A::Epsilon: Clone,
+{
+    type Epsilon = A::Epsilon;
+
+    #[inline]
+    fn default_epsilon() -> A::Epsilon {
+        A::default_epsilon()
+    }
+
+    #[inline]
+    fn abs_diff_eq(&self, other: &Vec<B>, epsilon: A::Epsilon) -> bool {
+        self.len() == other.len()
+            && Iterator::zip(self.iter(), other).all(|(x, y)| A::abs_diff_eq(x, y, epsilon.clone()))
+    }
 }
 
 #[cfg(feature = "num-complex")]

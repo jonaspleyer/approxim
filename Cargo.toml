@@ -30,6 +30,7 @@ default = ["std", "derive"]
 std = []
 array_impl = []
 tuple_impl = ["paste"]
+vec_impl = []
 derive = []
 
 [dependencies]

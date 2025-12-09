@@ -491,6 +491,32 @@ mod test_array {
     }
 }
 
+#[cfg(feature = "vec_impl")]
+mod test_vec {
+    extern crate alloc;
+    use alloc::vec::Vec;
+
+    mod test_f32 {
+        use super::*;
+
+        #[test]
+        fn test_basic() {
+            assert_abs_diff_eq!(Vec::from([1.0f32, 2.0f32]), Vec::from([1.0f32, 2.0f32]));
+            assert_abs_diff_ne!(Vec::from([1.0f32, 2.0f32]), Vec::from([2.0f32, 1.0f32]));
+        }
+    }
+
+    mod test_f64 {
+        use super::*;
+
+        #[test]
+        fn test_basic() {
+            assert_abs_diff_eq!(Vec::from([1.0f64, 2.0f64]), Vec::from([1.0f64, 2.0f64]));
+            assert_abs_diff_ne!(Vec::from([1.0f64, 2.0f64]), Vec::from([2.0f64, 1.0f64]));
+        }
+    }
+}
+
 #[cfg(feature = "tuple_impl")]
 mod test_tuple{
     use approxim::AbsDiffEq;

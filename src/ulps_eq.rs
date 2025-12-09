@@ -1,3 +1,5 @@
+#[cfg(feature = "vec_impl")]
+use alloc::vec::Vec;
 use core::cell;
 #[cfg(feature = "num-complex")]
 use num_complex::Complex;
@@ -195,6 +197,26 @@ where
 
     #[inline]
     fn ulps_eq(&self, other: &[B; N], epsilon: A::Epsilon, max_ulps: u32) -> bool {
+        self.len() == other.len()
+            && Iterator::zip(self.iter(), other)
+                .all(|(x, y)| A::ulps_eq(x, y, epsilon.clone(), max_ulps.clone()))
+    }
+}
+
+#[cfg(feature = "vec_impl")]
+#[cfg_attr(docsrs, doc(cfg(feature = "vec_impl")))]
+impl<A, B> UlpsEq<Vec<B>> for Vec<A>
+where
+    A: UlpsEq<B>,
+    A::Epsilon: Clone,
+{
+    #[inline]
+    fn default_max_ulps() -> u32 {
+        A::default_max_ulps()
+    }
+
+    #[inline]
+    fn ulps_eq(&self, other: &Vec<B>, epsilon: A::Epsilon, max_ulps: u32) -> bool {
         self.len() == other.len()
             && Iterator::zip(self.iter(), other)
                 .all(|(x, y)| A::ulps_eq(x, y, epsilon.clone(), max_ulps.clone()))
