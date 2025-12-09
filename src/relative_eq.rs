@@ -1,7 +1,11 @@
 use crate::AbsDiffEq;
 #[cfg(feature = "vec_impl")]
 use alloc::vec::Vec;
+#[cfg(feature = "indexmap_impl")]
+use core::hash::{BuildHasher, Hash};
 use core::{cell, f32, f64};
+#[cfg(feature = "indexmap_impl")]
+use indexmap::IndexMap;
 #[cfg(feature = "num-complex")]
 use num_complex::Complex;
 
@@ -434,5 +438,36 @@ impl<T: RelativeEq + Float + ordered_float::FloatCore> RelativeEq<T> for Ordered
     #[inline]
     fn relative_eq(&self, other: &T, epsilon: Self::Epsilon, max_relative: Self::Epsilon) -> bool {
         T::relative_eq(&self.into_inner(), other, epsilon, max_relative)
+    }
+}
+
+#[cfg(feature = "indexmap_impl")]
+#[cfg_attr(docsrs, doc(cfg(feature = "indexmap_impl")))]
+impl<K, V1, V2, S1, S2> RelativeEq<IndexMap<K, V2, S2>> for IndexMap<K, V1, S1>
+where
+    K: Hash + Eq,
+    V1: RelativeEq<V2>,
+    V1::Epsilon: Clone,
+    S1: BuildHasher,
+    S2: BuildHasher,
+{
+    #[inline]
+    fn default_max_relative() -> V1::Epsilon {
+        V1::default_max_relative()
+    }
+
+    #[inline]
+    fn relative_eq(
+        &self,
+        other: &IndexMap<K, V2, S2>,
+        epsilon: Self::Epsilon,
+        max_relative: Self::Epsilon,
+    ) -> bool {
+        self.len() == other.len()
+            && self.iter().all(|(key, value)| {
+                other.get(key).map_or(false, |v| {
+                    V1::relative_eq(value, v, epsilon.clone(), max_relative.clone())
+                })
+            })
     }
 }

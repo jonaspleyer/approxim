@@ -172,7 +172,7 @@ extern crate num_traits;
 #[cfg_attr(docsrs, doc(cfg(feature = "ordered-float")))]
 extern crate ordered_float;
 
-#[cfg(feature = "vec_impl")]
+#[cfg(any(feature = "vec_impl", feature = "indexmap_impl"))]
 extern crate alloc;
 
 mod abs_diff_eq;

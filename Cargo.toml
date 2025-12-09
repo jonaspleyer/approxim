@@ -31,6 +31,7 @@ std = []
 array_impl = []
 tuple_impl = ["paste"]
 vec_impl = []
+indexmap_impl = ["dep:indexmap"]
 derive = []
 
 [dependencies]
@@ -39,3 +40,4 @@ num-complex = { version = "0.4.6", optional = true }
 ordered-float = { version = "5.0", optional = true }
 approx-derive = { version = "0.2.7", features = ["infer_name"] }
 paste = { version = "1.0.15", optional = true }
+indexmap = { version = "2.12.1", optional = true, default-features = false }
