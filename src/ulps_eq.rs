@@ -1,6 +1,10 @@
 #[cfg(feature = "vec_impl")]
 use alloc::vec::Vec;
 use core::cell;
+#[cfg(feature = "indexmap_impl")]
+use core::hash::{BuildHasher, Hash};
+#[cfg(feature = "indexmap_impl")]
+use indexmap::IndexMap;
 #[cfg(feature = "num-complex")]
 use num_complex::Complex;
 #[cfg(feature = "ordered-float")]
@@ -357,5 +361,31 @@ impl<T: UlpsEq + Float + ordered_float::FloatCore> UlpsEq<T> for OrderedFloat<T>
     #[inline]
     fn ulps_eq(&self, other: &T, epsilon: T::Epsilon, max_ulps: u32) -> bool {
         T::ulps_eq(&self.into_inner(), other, epsilon, max_ulps)
+    }
+}
+
+#[cfg(feature = "indexmap_impl")]
+#[cfg_attr(docsrs, doc(cfg(feature = "indexmap_impl")))]
+impl<K, V1, V2, S1, S2> UlpsEq<IndexMap<K, V2, S2>> for IndexMap<K, V1, S1>
+where
+    K: Hash + Eq,
+    V1: UlpsEq<V2>,
+    V1::Epsilon: Clone,
+    S1: BuildHasher,
+    S2: BuildHasher,
+{
+    #[inline]
+    fn default_max_ulps() -> u32 {
+        V1::default_max_ulps()
+    }
+
+    #[inline]
+    fn ulps_eq(&self, other: &IndexMap<K, V2, S2>, epsilon: Self::Epsilon, max_ulps: u32) -> bool {
+        self.len() == other.len()
+            && self.iter().all(|(key, value)| {
+                other.get(key).map_or(false, |v| {
+                    V1::ulps_eq(value, v, epsilon.clone(), max_ulps.clone())
+                })
+            })
     }
 }

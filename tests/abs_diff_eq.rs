@@ -19,6 +19,8 @@
 #[macro_use]
 extern crate approxim;
 
+mod common;
+
 mod test_f32 {
     use core::f32;
 
@@ -644,5 +646,22 @@ mod test_ordered_float {
         fn test_basic_panic_ne() {
             assert_abs_diff_ne!(OrderedFloat(1.0f64), OrderedFloat(1.0f64));
         }
+    }
+}
+
+#[cfg(feature = "indexmap_impl")]
+mod test_indexmap {
+    use super::common::indexmap::IndexMap;
+
+    #[test]
+    fn test_basic() {
+        assert_abs_diff_eq!(
+            IndexMap::from_iter([(1, 1.0), (2, 2.0)]),
+            IndexMap::from_iter([(1, 1.0), (2, 2.0)])
+        );
+        assert_abs_diff_ne!(
+            IndexMap::from_iter([(1, 1.0), (2, 2.0)]),
+            IndexMap::from_iter([(1, 1.0), (2, 1.0)])
+        );
     }
 }
