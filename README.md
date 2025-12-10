@@ -7,8 +7,11 @@
 [![Minimum rustc version](https://img.shields.io/badge/rustc-1.36+-lightgray.svg?style=flat-square)](https://github.com/jonaspleyer/approxim#rust-version-requirements)
 ![Codecov](https://img.shields.io/codecov/c/github/jonaspleyer/approxim?style=flat-square)
 
-This is a fork of the popular [approx](https://github.com/brendanzab/approx) crate.
-Approximate floating point equality comparisons and assertions for the Rust Programming Language.
+> Approximate floating point equality comparisons and assertions for the Rust Programming Language.
+
+This is a fork of the popular [approx](https://github.com/brendanzab/approx) crate which extends the
+functionality of `approx` by implementing many of the PRs of the original crate.
+It also provides derive macros via `approx-derive`
 
 ## Replace `approx`
 To act as a drop-in replacement for [approx](https://github.com/brendanzab/approx), one can use the
